@@ -1,4 +1,4 @@
-;; Copyright (C) 2014, Jozef Wagner. All rights reserved.
+;; Copyright (C) 2013, 2015, Jozef Wagner. All rights reserved.
 ;;
 ;; The use and distribution terms for this software are covered by the
 ;; Eclipse Public License 1.0
@@ -13,39 +13,46 @@
 (ns dunaj.docgen
   "Facilities for generating documentation."
   (:api dunaj)
-  (:require
-   [dunaj.doc :refer [gen-doc]]
-   [dunaj.repl]
-   [foo.core]))
+  (:require [dunaj.doc :refer [gen-doc]]
+            [dunaj.repl]
+            [foo.core]))
 
 (def dunaj-config
-  {:current-version v1
-   :target-path "target/page"
-   :examples-path "examples"
-   :static-path "doc"
+  {:current-version clojure.bootstrap/vc
+   :target-path "../dunaj/target/page"
+   :examples-path "../dunaj/examples"
+   :static-path "../dunaj/doc"
    :proj-name "Dunaj"
-   :proj-url "https://dunaj.org"
+   :proj-url "https://www.dunaj.org"
    :sources-url
    "https://github.com/dunaj-project/dunaj/tree/master/src/clj/"
    :logo-url "dunaj.svg"
    :refers-ns 'foo.core
    :core-ns 'dunaj.core
    :copy-years "2013, 2015,"
-   :additional-copyright "2008, 2015, Rich Hickey and Clojure contributors"
+   :additional-copyright
+   "2008, 2015, Rich Hickey and Clojure contributors"
    :authors ["Jozef Wagner"]
-   :ns-blacklist
-   #{'dunaj.resource.serial 'dunaj.format.asciidoc
-     'dunaj.doc}
+   :ns-blacklist #{'dunaj.format.asciidoc 'dunaj.doc}
+   :api-header-item "Documentation"
+   :ns-regex #"^bare.*|^dunaj.*|^clojure.core"
+   :header-menu
+   [{:url "about.html" :name "About" :icon :fa-info-circle}
+    {:url "news.html" :name "News" :icon :fa-bullhorn}
+    {:url "start.html" :name "Getting Started" :icon :fa-download}
+    {:url "doc.html" :name "Documentation" :icon :fa-book}
+    {:url "https://github.com/dunaj-project"
+     :name "Source at Github" :icon :fa-github}]
    :doc-menu
    [{:url "doc.html" :name "Documentation"}
     {:url "rationale.html" :name "Rationale"}
-    {:url "guide.html" :name "Crash course"}
+    {:url "guide.html" :name "Crash Course"}
     {:url "spec.html" :name "Specification"}
     {:url "api.html" :name "API"}
     {:url "spi.html" :name "SPI"}
-    {:url "todo.html" :name "Future plans"}]
+    {:url "todo.html" :name "Future Plans"}]
    :guide-menu
-   [{:url "guide.html" :name "Crash course"}
+   [{:url "guide.html" :name "Crash Course"}
     {:url "day1.html" :name "Deconstructed API"}
     {:url "day2.html" :name "Type Signatures"}
     {:url "day3.html" :name "Protocols First"}
@@ -75,38 +82,40 @@
      :section "Future plans" :head "Documentation"}
     ;; guide
     {:filename "day1" :name " - Deconstructing Core API"
-     :menu :guide-menu :section "Deconstructed API" :head "Documentation"}
+     :menu :guide-menu :section "Deconstructed API"
+     :head "Documentation"}
     {:filename "day2" :name " - Optional Type Signatures"
-     :menu :guide-menu :section "Type Signatures" :head "Documentation"}
+     :menu :guide-menu :section "Type Signatures"
+     :head "Documentation"}
     {:filename "day3" :name " - Protocols First"
-     :menu :guide-menu :section "Protocols First" :head "Documentation"}
+     :menu :guide-menu :section "Protocols First"
+     :head "Documentation"}
     {:filename "day4" :name " - Towards Simpler API"
-     :menu :guide-menu :section "Simplified API" :head "Documentation"}
+     :menu :guide-menu :section "Simplified API"
+     :head "Documentation"}
     {:filename "day5" :name " - Reducers First"
-     :menu :guide-menu :section "Reducers First" :head "Documentation"}
+     :menu :guide-menu :section "Reducers First"
+     :head "Documentation"}
     {:filename "day6" :name " - Enabling Host Performance"
-     :menu :guide-menu :section "Host Performance" :head "Documentation"}
+     :menu :guide-menu :section "Host Performance"
+     :head "Documentation"}
     {:filename "day7" :name " - Data Formatters"
-     :menu :guide-menu :section "Data Formatters" :head "Documentation"}
+     :menu :guide-menu :section "Data Formatters"
+     :head "Documentation"}
     {:filename "day8" :name " - Computer And Network Resources"
-     :menu :guide-menu :section "Resources" :head "Documentation"}
+     :menu :guide-menu :section "Resources"
+     :head "Documentation"}
     {:filename "day9" :name " - Improved Math"
-     :menu :guide-menu :section "Improved Math" :head "Documentation"}
+     :menu :guide-menu :section "Improved Math"
+     :head "Documentation"}
     {:filename "day10" :name " - Beautiful Documentation"
-     :menu :guide-menu :section "Documentation" :head "Documentation"}
+     :menu :guide-menu :section "Documentation"
+     :head "Documentation"}
     ;; specs
     {:filename "identifiers" :name "- Identifiers" :menu :doc-menu
      :section "Documentation"}
-]
-   :header-menu
-   [{:url "about.html" :name "About" :icon :fa-info-circle}
-    {:url "news.html" :name "News" :icon :fa-bullhorn}
-    {:url "start.html" :name "Getting Started" :icon :fa-download}
-    {:url "doc.html" :name "Documentation" :icon :fa-book}
-    {:url "https://github.com/dunaj-project"
-     :name "Source at Github" :icon :fa-github}]
-   :doc-header-item "Documentation"
-   :ns-regex #"^bare.*|^dunaj.*|^clojure.core"})
+    ]})
+
 
 ;;;; Scratch
 
@@ -116,11 +125,18 @@
 
   (gen-doc dunaj-config)
 
-  (gen-doc-home dunaj-config true)
-  (gen-doc-home dunaj-config false)
-  
-  (gen-static dunaj-config)
-  
-  (gen-static dunaj-config
+  (gen-doc dunaj-config true)
+  (gen-doc dunaj-config false)
+  (gen-doc dunaj-config false 'dunaj.core)
+  (gen-doc dunaj-config false 'dunaj.coll)
+
+  (dunaj.doc/gen-api-list dunaj-config true)
+  (dunaj.doc/gen-api-list dunaj-config false)
+
+  (dunaj.doc/gen-static dunaj-config)
+
+  (dunaj.doc/gen-static dunaj-config
   {:filename "day9" :name " - Improved Math"
-   :menu :guide-menu :section "Improved Math" :head "Documentation"}))
+   :menu :guide-menu :section "Improved Math" :head "Documentation"})
+
+)

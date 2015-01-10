@@ -23,7 +23,7 @@
    :examples-path "../dunaj/examples"
    :static-path "../dunaj/doc"
    :proj-name "Dunaj"
-   :proj-url "https://www.dunaj.org"
+   :proj-url "http://www.dunaj.org"
    :sources-url
    "https://github.com/dunaj-project/dunaj/tree/master/src/clj/"
    :logo-url "dunaj.svg"
@@ -51,6 +51,10 @@
     {:url "api.html" :name "API"}
     {:url "spi.html" :name "SPI"}
     {:url "todo.html" :name "Future Plans"}]
+   :spec-menu
+   [{:url "spec.html" :name "Specification"}
+    {:url "math.html" :name "Math"}
+    {:url "identifiers.html" :name "Identifiers"}]
    :guide-menu
    [{:url "guide.html" :name "Crash Course"}
     {:url "day1.html" :name "Deconstructed API"}
@@ -65,6 +69,7 @@
     {:url "day10.html" :name "Documentation"}]
    :static-pages
    [;; main
+    {:filename "index"}
     {:filename "about" :name "- About" :section "About" :head "About"}
     {:filename "news" :name "News" :section "News" :head "News"}
     {:filename "start" :name "- Getting Started"
@@ -114,6 +119,8 @@
     ;; specs
     {:filename "identifiers" :name "- Identifiers" :menu :doc-menu
      :section "Documentation"}
+    {:filename "math" :name "- Math" :menu :spec-menu
+     :section "Documentation"}
     ]})
 
 
@@ -129,6 +136,7 @@
   (gen-doc dunaj-config false)
   (gen-doc dunaj-config false 'dunaj.core)
   (gen-doc dunaj-config false 'dunaj.coll)
+  (gen-doc dunaj-config false 'dunaj.bit)
 
   (dunaj.doc/gen-api-list dunaj-config true)
   (dunaj.doc/gen-api-list dunaj-config false)
@@ -136,7 +144,11 @@
   (dunaj.doc/gen-static dunaj-config)
 
   (dunaj.doc/gen-static dunaj-config
-  {:filename "day9" :name " - Improved Math"
-   :menu :guide-menu :section "Improved Math" :head "Documentation"})
+    {:filename "math" :name "- Math" :menu :spec-menu
+     :section "Documentation"})
+
+  (dunaj.doc/gen-static dunaj-config
+    {:filename "math" :name "- Math" :menu :spec-menu
+     :section "Documentation"})
 
 )

@@ -53,8 +53,19 @@
     {:url "todo.html" :name "Future Plans"}]
    :spec-menu
    [{:url "spec.html" :name "Specification"}
+    {:url "boolean.html" :name "Booleans"}
     {:url "math.html" :name "Math"}
-    {:url "identifiers.html" :name "Identifiers"}]
+    {:url "char.html" :name "Characters"}
+    {:url "string.html" :name "Strings"}
+    {:url "identifier.html" :name "Identifiers"}
+    {:url "function.html" :name "Functions"}
+    {:url "compare.html" :name "Comparison"}
+    {:url "concurrent.html" :name "Concurrency"}
+    {:url "reference.html" :name "References"}
+    {:url "conventions.html" :name "Conventions"}
+    {:url "resources.html" :name "Resources"}
+    {:url "metadata.html" :name "Metadata"}
+    {:url "types.html" :name "Data types"}]
    :guide-menu
    [{:url "guide.html" :name "Crash Course"}
     {:url "day1.html" :name "Deconstructed API"}
@@ -80,11 +91,11 @@
     {:filename "rationale" :name "Design and Rationale"
      :menu :doc-menu :section "Rationale" :head "Documentation"}
     {:filename "guide" :name "crash course"
-     :menu :doc-menu :section "Crash course" :head "Documentation"}
+     :menu :doc-menu :section "Crash Course" :head "Documentation"}
     {:filename "spec" :name "Specification"
      :menu :doc-menu :section "Specification" :head "Documentation"}
     {:filename "todo" :name "- Future Plans" :menu :doc-menu
-     :section "Future plans" :head "Documentation"}
+     :section "Future Plans" :head "Documentation"}
     ;; guide
     {:filename "day1" :name " - Deconstructing Core API"
      :menu :guide-menu :section "Deconstructed API"
@@ -117,10 +128,32 @@
      :menu :guide-menu :section "Documentation"
      :head "Documentation"}
     ;; specs
-    {:filename "identifiers" :name "- Identifiers" :menu :doc-menu
-     :section "Documentation"}
+    {:filename "identifier" :name "- Identifiers" :menu :spec-menu
+     :section "Identifiers" :head "Documentation"}
     {:filename "math" :name "- Math" :menu :spec-menu
-     :section "Documentation"}
+     :section "Math" :head "Documentation"}
+    {:filename "boolean" :name "- Booleans" :menu :spec-menu
+     :section "Booleans" :head "Documentation"}
+    {:filename "char" :name "- Characters" :menu :spec-menu
+     :section "Characters" :head "Documentation"}
+    {:filename "string" :name "- Strings" :menu :spec-menu
+     :section "Strings" :head "Documentation"}
+    {:filename "function" :name "- Functions" :menu :spec-menu
+     :section "Functions" :head "Documentation"}
+    {:filename "compare" :name "- Comparison" :menu :spec-menu
+     :section "Comparison" :head "Documentation"}
+    {:filename "reference" :name "- References" :menu :spec-menu
+     :section "References" :head "Documentation"}
+    {:filename "concurrent" :name "- Concurrency" :menu :spec-menu
+     :section "Concurrency" :head "Documentation"}
+    {:filename "conventions" :name "- Conventions" :menu :spec-menu
+     :section "Conventions" :head "Documentation"}
+    {:filename "resources" :name "- Resources" :menu :spec-menu
+     :section "Resources" :head "Documentation"}
+    {:filename "metadata" :name "- Metadata" :menu :spec-menu
+     :section "Metadata" :head "Documentation"}
+    {:filename "types" :name "- Data types" :menu :spec-menu
+     :section "Data types" :head "Documentation"}
     ]})
 
 
@@ -136,7 +169,7 @@
   (gen-doc dunaj-config false)
   (gen-doc dunaj-config false 'dunaj.core)
   (gen-doc dunaj-config false 'dunaj.coll)
-  (gen-doc dunaj-config false 'dunaj.bit)
+  (gen-doc dunaj-config false 'dunaj.string)
 
   (dunaj.doc/gen-api-list dunaj-config true)
   (dunaj.doc/gen-api-list dunaj-config false)
@@ -144,11 +177,13 @@
   (dunaj.doc/gen-static dunaj-config)
 
   (dunaj.doc/gen-static dunaj-config
-    {:filename "math" :name "- Math" :menu :spec-menu
+    {:filename "rationale" :name "- xxx" :menu :doc-menu
      :section "Documentation"})
 
   (dunaj.doc/gen-static dunaj-config
-    {:filename "math" :name "- Math" :menu :spec-menu
+    {:filename "types" :name "- Resources" :menu :spec-menu
      :section "Documentation"})
+
+
 
 )

@@ -165,7 +165,7 @@
    :proj-url "http://www.dunaj.org"
    :sources-url
    "https://github.com/dunaj-project/dunaj/tree/master/src/clj/"
-   :logo-url "dunaj.svg"
+   :logo-url "dunaj.png"
    :refers-ns 'foo.core
    :core-ns 'dunaj.core
    :copy-years "2013, 2015,"
@@ -178,118 +178,14 @@
    :header-menu
    [{:url "https://github.com/dunaj-project"
      :name "Source at Github" :icon :fa-github}]
-   :doc-menu
-   [{:url "doc.html" :name "Documentation"}
-    {:url "rationale.html" :name "Rationale"}
-    {:url "guide.html" :name "Crash Course"}
-    {:url "spec.html" :name "Specification"}
-    {:url "api.html" :name "API"}
-    {:url "spi.html" :name "SPI"}
-    {:url "todo.html" :name "Future Plans"}]
-   :spec-menu
-   [{:url "spec.html" :name "Specification"}
-    {:url "boolean.html" :name "Booleans"}
-    {:url "math.html" :name "Math"}
-    {:url "char.html" :name "Characters"}
-    {:url "string.html" :name "Strings"}
-    {:url "identifier.html" :name "Identifiers"}
-    {:url "function.html" :name "Functions"}
-    {:url "compare.html" :name "Comparison"}
-    {:url "concurrent.html" :name "Concurrency"}
-    {:url "reference.html" :name "References"}
-    {:url "conventions.html" :name "Conventions"}
-    {:url "resources.html" :name "Resources"}
-    {:url "metadata.html" :name "Metadata"}
-    {:url "types.html" :name "Data types"}]
-   :guide-menu
-   [{:url "guide.html" :name "Crash Course"}
-    {:url "day1.html" :name "Deconstructed API"}
-    {:url "day2.html" :name "Type Signatures"}
-    {:url "day3.html" :name "Protocols First"}
-    {:url "day4.html" :name "Simplified API"}
-    {:url "day5.html" :name "Reducers First"}
-    {:url "day6.html" :name "Host Performance"}
-    {:url "day7.html" :name "Data Formatters"}
-    {:url "day8.html" :name "Resources"}
-    {:url "day9.html" :name "Improved Math"}
-    {:url "day10.html" :name "Documentation"}]
+   :pd-menu
+   [{:url "pday0.html" :name "Introduction"}
+    {:url "pday1.html" :name "Deconstructed API"}]
    :static-pages
-   [;; main
-    {:filename "index"}
-    {:filename "about" :name "- About" :section "About" :head "About"}
-    {:filename "news" :name "News" :section "News" :head "News"}
-    {:filename "start" :name "- Getting Started"
-     :section "Getting Started" :head "Getting Started"}
-    ;; docs
-    {:filename "doc" :name "- Documentation" :menu :doc-menu
-     :section "Documentation" :head "Documentation"}
-    {:filename "rationale" :name "Design and Rationale"
-     :menu :doc-menu :section "Rationale" :head "Documentation"}
-    {:filename "guide" :name "crash course"
-     :menu :doc-menu :section "Crash Course" :head "Documentation"}
-    {:filename "spec" :name "Specification"
-     :menu :doc-menu :section "Specification" :head "Documentation"}
-    {:filename "todo" :name "- Future Plans" :menu :doc-menu
-     :section "Future Plans" :head "Documentation"}
-    ;; guide
-    {:filename "day1" :name " - Deconstructing Core API"
-     :menu :guide-menu :section "Deconstructed API"
-     :head "Documentation"}
-    {:filename "day2" :name " - Optional Type Signatures"
-     :menu :guide-menu :section "Type Signatures"
-     :head "Documentation"}
-    {:filename "day3" :name " - Protocols First"
-     :menu :guide-menu :section "Protocols First"
-     :head "Documentation"}
-    {:filename "day4" :name " - Towards Simpler API"
-     :menu :guide-menu :section "Simplified API"
-     :head "Documentation"}
-    {:filename "day5" :name " - Reducers First"
-     :menu :guide-menu :section "Reducers First"
-     :head "Documentation"}
-    {:filename "day6" :name " - Enabling Host Performance"
-     :menu :guide-menu :section "Host Performance"
-     :head "Documentation"}
-    {:filename "day7" :name " - Data Formatters"
-     :menu :guide-menu :section "Data Formatters"
-     :head "Documentation"}
-    {:filename "day8" :name " - Computer And Network Resources"
-     :menu :guide-menu :section "Resources"
-     :head "Documentation"}
-    {:filename "day9" :name " - Improved Math"
-     :menu :guide-menu :section "Improved Math"
-     :head "Documentation"}
-    {:filename "day10" :name " - Beautiful Documentation"
-     :menu :guide-menu :section "Documentation"
-     :head "Documentation"}
-    ;; specs
-    {:filename "identifier" :name "- Identifiers" :menu :spec-menu
-     :section "Identifiers" :head "Documentation"}
-    {:filename "math" :name "- Math" :menu :spec-menu
-     :section "Math" :head "Documentation"}
-    {:filename "boolean" :name "- Booleans" :menu :spec-menu
-     :section "Booleans" :head "Documentation"}
-    {:filename "char" :name "- Characters" :menu :spec-menu
-     :section "Characters" :head "Documentation"}
-    {:filename "string" :name "- Strings" :menu :spec-menu
-     :section "Strings" :head "Documentation"}
-    {:filename "function" :name "- Functions" :menu :spec-menu
-     :section "Functions" :head "Documentation"}
-    {:filename "compare" :name "- Comparison" :menu :spec-menu
-     :section "Comparison" :head "Documentation"}
-    {:filename "reference" :name "- References" :menu :spec-menu
-     :section "References" :head "Documentation"}
-    {:filename "concurrent" :name "- Concurrency" :menu :spec-menu
-     :section "Concurrency" :head "Documentation"}
-    {:filename "conventions" :name "- Conventions" :menu :spec-menu
-     :section "Conventions" :head "Documentation"}
-    {:filename "resources" :name "- Resources" :menu :spec-menu
-     :section "Resources" :head "Documentation"}
-    {:filename "metadata" :name "- Metadata" :menu :spec-menu
-     :section "Metadata" :head "Documentation"}
-    {:filename "types" :name "- Data types" :menu :spec-menu
-     :section "Data types" :head "Documentation"}
-    ]})
+   [{:filename "pday0" :name "Introduction" :menu :pd-menu
+     :section "Introduction"}
+    {:filename "pday1" :name "- Deconstructing Core API"
+     :menu :pd-menu :section "Deconstructed API"}]})
 
 
 ;;;; Scratch
@@ -319,8 +215,16 @@
     {:filename "types" :name "- Resources" :menu :spec-menu
      :section "Documentation"})
 
+
+  (dunaj.doc/gen-static pd-config)
+
   (dunaj.doc/gen-static pd-config
-    {:filename "pday0" :name "Introduction"})
+    {:filename "pday0" :name "Introduction" :menu :pd-menu
+     :section "Introduction"})
+
+  (dunaj.doc/gen-static pd-config
+    {:filename "pday1" :name "- Deconstructing Core API"
+     :menu :pd-menu :section "Deconstructed API"})
 
 
 

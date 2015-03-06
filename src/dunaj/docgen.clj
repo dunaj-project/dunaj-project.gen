@@ -26,7 +26,7 @@
    :proj-url "http://www.dunaj.org"
    :sources-url
    "https://github.com/dunaj-project/dunaj/tree/master/src/clj/"
-   :logo-url "dunaj.svg"
+   :logo-url "dunaj.png"
    :refers-ns 'foo.core
    :core-ns 'dunaj.core
    :copy-years "2013, 2015,"

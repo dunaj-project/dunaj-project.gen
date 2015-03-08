@@ -162,6 +162,7 @@
    :examples-path "../dunaj/examples"
    :static-path "../dunaj/doc"
    :proj-name "Dunaj"
+   :disqus "dunajproject"
    :proj-url "http://www.dunaj.org"
    :sources-url
    "https://github.com/dunaj-project/dunaj/tree/master/src/clj/"
@@ -180,12 +181,18 @@
      :name "Source at Github" :icon :fa-github}]
    :pd-menu
    [{:url "pday0.html" :name "Introduction"}
-    {:url "pday1.html" :name "Deconstructed API"}]
+    {:url "pday1.html" :name "Deconstructed API"}
+    {:url "pday2.html" :name "Type Signatures"}
+    {:url "pday3.html" :name "Protocols First"}]
    :static-pages
    [{:filename "pday0" :name "Introduction" :menu :pd-menu
      :section "Introduction"}
     {:filename "pday1" :name "- Deconstructing Core API"
-     :menu :pd-menu :section "Deconstructed API"}]})
+     :menu :pd-menu :section "Deconstructed API" :disqus-id "day1"}
+    {:filename "pday2" :name "- Optional Type Signatures"
+     :menu :pd-menu :section "Type Signatures" :disqus-id "day2"}
+    {:filename "pday3" :name "- Protocols First"
+     :menu :pd-menu :section "Protocols First" :disqus-id "day3"}]})
 
 
 ;;;; Scratch
@@ -217,15 +224,5 @@
 
 
   (dunaj.doc/gen-static pd-config)
-
-  (dunaj.doc/gen-static pd-config
-    {:filename "pday0" :name "Introduction" :menu :pd-menu
-     :section "Introduction"})
-
-  (dunaj.doc/gen-static pd-config
-    {:filename "pday1" :name "- Deconstructing Core API"
-     :menu :pd-menu :section "Deconstructed API"})
-
-
 
 )

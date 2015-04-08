@@ -19,9 +19,10 @@
 
 (def dunaj-config
   {:current-version clojure.bootstrap/vc
-   :target-path "../dunaj/target/page"
-   :examples-path "../dunaj/examples"
-   :static-path "../dunaj/doc"
+   :target-path "../dp/dunaj/target/page"
+   :examples-path "../dp/dunaj/examples"
+   :static-path "../dp/dunaj/doc"
+   :disqus "dunajproject"
    :proj-name "Dunaj"
    :proj-url "http://www.dunaj.org"
    :sources-url
@@ -80,7 +81,7 @@
     {:url "day10.html" :name "Documentation"}]
    :static-pages
    [;; main
-    {:filename "index"}
+    ;;{:filename "index"}
     {:filename "about" :name "- About" :section "About" :head "About"}
     {:filename "news" :name "News" :section "News" :head "News"}
     {:filename "start" :name "- Getting Started"
@@ -99,34 +100,34 @@
     ;; guide
     {:filename "day1" :name " - Deconstructing Core API"
      :menu :guide-menu :section "Deconstructed API"
-     :head "Documentation"}
+     :head "Documentation" :disqus-id "day1"}
     {:filename "day2" :name " - Optional Type Signatures"
      :menu :guide-menu :section "Type Signatures"
-     :head "Documentation"}
+     :head "Documentation" :disqus-id "day2"}
     {:filename "day3" :name " - Protocols First"
      :menu :guide-menu :section "Protocols First"
-     :head "Documentation"}
+     :head "Documentation" :disqus-id "day3"}
     {:filename "day4" :name " - Towards Simpler API"
      :menu :guide-menu :section "Simplified API"
-     :head "Documentation"}
+     :head "Documentation" :disqus-id "day4"}
     {:filename "day5" :name " - Reducers First"
      :menu :guide-menu :section "Reducers First"
-     :head "Documentation"}
+     :head "Documentation" :disqus-id "day5"}
     {:filename "day6" :name " - Enabling Host Performance"
      :menu :guide-menu :section "Host Performance"
-     :head "Documentation"}
+     :head "Documentation" :disqus-id "day6"}
     {:filename "day7" :name " - Data Formatters"
      :menu :guide-menu :section "Data Formatters"
-     :head "Documentation"}
+     :head "Documentation" :disqus-id "day7"}
     {:filename "day8" :name " - Computer And Network Resources"
      :menu :guide-menu :section "Resources"
-     :head "Documentation"}
-    {:filename "day9" :name " - Improved Math"
+     :head "Documentation" :disqus-id "day8"}
+    {:filename "day9" :name " - Improving Math Facilities"
      :menu :guide-menu :section "Improved Math"
-     :head "Documentation"}
-    {:filename "day10" :name " - Beautiful Documentation"
+     :head "Documentation" :disqus-id "day9"}
+    {:filename "day10" :name " - Captivating Documentation"
      :menu :guide-menu :section "Documentation"
-     :head "Documentation"}
+     :head "Documentation" :disqus-id "day10"}
     ;; specs
     {:filename "identifier" :name "- Identifiers" :menu :spec-menu
      :section "Identifiers" :head "Documentation"}
@@ -183,7 +184,13 @@
    [{:url "pday0.html" :name "Introduction"}
     {:url "pday1.html" :name "Deconstructed API"}
     {:url "pday2.html" :name "Type Signatures"}
-    {:url "pday3.html" :name "Protocols First"}]
+    {:url "pday3.html" :name "Protocols First"}
+    {:url "pday4.html" :name "Simplified API"}
+    {:url "pday5.html" :name "Reducers First"}
+    {:url "pday6.html" :name "Host Performance"}
+    {:url "pday7.html" :name "Data Formatters"}
+    {:url "pday8.html" :name "Resources"}
+    {:url "pday9.html" :name "Improved Math"}]
    :static-pages
    [{:filename "pday0" :name "Introduction" :menu :pd-menu
      :section "Introduction"}
@@ -192,7 +199,19 @@
     {:filename "pday2" :name "- Optional Type Signatures"
      :menu :pd-menu :section "Type Signatures" :disqus-id "day2"}
     {:filename "pday3" :name "- Protocols First"
-     :menu :pd-menu :section "Protocols First" :disqus-id "day3"}]})
+     :menu :pd-menu :section "Protocols First" :disqus-id "day3"}
+    {:filename "pday4" :name "- Towards Simpler API"
+     :menu :pd-menu :section "Simplified API" :disqus-id "day4"}
+    {:filename "pday5" :name "- Reducers First"
+     :menu :pd-menu :section "Reducers First" :disqus-id "day5"}
+    {:filename "pday6" :name "- Enabling Host Performance"
+     :menu :pd-menu :section "Host Performance" :disqus-id "day6"}
+    {:filename "pday7" :name "- Data Formatters"
+     :menu :pd-menu :section "Data Formatters" :disqus-id "day7"}
+    {:filename "pday8" :name "- Computer and Network Resources"
+     :menu :pd-menu :section "Resources" :disqus-id "day8"}
+    {:filename "pday9" :name "- Improving Math Facilities"
+     :menu :pd-menu :section "Improved Math" :disqus-id "day9"}]})
 
 
 ;;;; Scratch
@@ -214,14 +233,20 @@
 
   (dunaj.doc/gen-static dunaj-config)
 
-  (dunaj.doc/gen-static dunaj-config
-    {:filename "rationale" :name "- xxx" :menu :doc-menu
-     :section "Documentation"})
+  (dunaj.doc/gen-static 
+   dunaj-config
+   {:filename "news" :name "News" :section "News" :head "News"}
+   #_{:filename "start" :name "- Getting Started"
+     :section "Getting Started" :head "Getting Started"}
+   #_{:filename "doc" :name "- Documentation" :menu :doc-menu
+     :section "Documentation" :head "Documentation"}
+   #_{:filename "news" :name "News" :section "News" :head "News"}
+   #_{:filename "about" :name "- About" :section "About" :head "About"})
 
   (dunaj.doc/gen-static dunaj-config
-    {:filename "types" :name "- Resources" :menu :spec-menu
-     :section "Documentation"})
-
+    {:filename "day10" :name " - Captivating Documentation"
+     :menu :guide-menu :section "Documentation"
+     :head "Documentation" :disqus-id "day10"})
 
   (dunaj.doc/gen-static pd-config)
 

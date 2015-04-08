@@ -12,4 +12,6 @@
 
 (ns foo.core
   "Sample dunaj ns"
-  (:api dunaj))
+  (:require [dunaj.core :refer [dunaj-ns]]))
+
+(dunaj-ns)

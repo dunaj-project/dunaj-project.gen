@@ -12,10 +12,12 @@
 
 (ns dunaj.docgen
   "Facilities for generating documentation."
-  (:api dunaj)
-  (:require [dunaj.doc :refer [gen-doc]]
-            [dunaj.repl]
-            [foo.core]))
+  (:require [dunaj.core :refer [dunaj-ns]]))
+
+(dunaj-ns
+ (:require [dunaj.doc :refer [gen-doc]]
+           [dunaj.repl]
+           [foo.core]))
 
 (def dunaj-config
   {:current-version clojure.bootstrap/vc

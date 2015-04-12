@@ -34,7 +34,7 @@
    :additional-copyright
    "2008, 2015, Rich Hickey and Clojure contributors"
    :authors ["Jozef Wagner"]
-   :ns-blacklist #{'dunaj.format.asciidoc 'dunaj.doc}
+   :ns-blacklist #{'dunaj.format.asciidoc 'dunaj.doc 'bare-ws.core}
    :api-header-item "Documentation"
    :ns-regex #"^bare.*|^dunaj.*|^clojure.core"
    :header-menu
@@ -157,6 +157,70 @@
      :section "Data types" :head "Documentation"}
     ]})
 
+(def dunaj-lite-config
+  {:current-version clojure.bootstrap/vc
+   :target-path "../dp/dunaj/target/page"
+   :examples-path "../dp/dunaj/examples"
+   :static-path "../dp/dunaj/doc"
+   :disqus "dunajproject"
+   :proj-name "Dunaj lite"
+   :proj-url "http://lite.dunaj.org"
+   :sources-url
+   "https://github.com/dunaj-project/dunaj/tree/lite/src/clj/"
+   :logo-url "dunaj.png"
+   :refers-ns 'foo.core
+   :core-ns 'dunaj.core
+   :copy-years "2013, 2015,"
+   :additional-copyright
+   "2008, 2015, Rich Hickey and Clojure contributors"
+   :authors ["Jozef Wagner"]
+   :ns-blacklist #{'dunaj.format.asciidoc 'dunaj.doc 'bare-ws.core}
+   :api-header-item "Documentation"
+   :ns-regex #"^bare.*|^dunaj.*|^clojure.core"
+   :header-menu
+   [{:url "http://www.dunaj.org" :name "Dunaj" :icon :fa-home}
+    {:url "https://github.com/dunaj-project"
+     :name "Source at Github" :icon :fa-github}]
+   :doc-menu
+   [{:url "doc.html" :name "Documentation"}
+    {:url "rationale.html" :name "Rationale"}
+    {:url "guide.html" :name "Crash Course"}
+    {:url "spec.html" :name "Specification"}
+    {:url "api.html" :name "API"}
+    {:url "spi.html" :name "SPI"}
+    {:url "todo.html" :name "Future Plans"}]
+   :spec-menu
+   [{:url "spec.html" :name "Specification"}
+    {:url "boolean.html" :name "Booleans"}
+    {:url "math.html" :name "Math"}
+    {:url "char.html" :name "Characters"}
+    {:url "string.html" :name "Strings"}
+    {:url "identifier.html" :name "Identifiers"}
+    {:url "function.html" :name "Functions"}
+    {:url "compare.html" :name "Comparison"}
+    {:url "concurrent.html" :name "Concurrency"}
+    {:url "reference.html" :name "References"}
+    {:url "conventions.html" :name "Conventions"}
+    {:url "resources.html" :name "Resources"}
+    {:url "metadata.html" :name "Metadata"}
+    {:url "types.html" :name "Data types"}]
+   :guide-menu
+   [{:url "guide.html" :name "Crash Course"}
+    {:url "day1.html" :name "Deconstructed API"}
+    {:url "day2.html" :name "Type Signatures"}
+    {:url "day3.html" :name "Protocols First"}
+    {:url "day4.html" :name "Simplified API"}
+    {:url "day5.html" :name "Reducers First"}
+    {:url "day6.html" :name "Host Performance"}
+    {:url "day7.html" :name "Data Formatters"}
+    {:url "day8.html" :name "Resources"}
+    {:url "day9.html" :name "Improved Math"}
+    {:url "day10.html" :name "Documentation"}]
+   :static-pages
+   [;; main
+    ;;{:filename "index"}
+    {:filename "lite" :name ""}]})
+
 (def pd-config
   {:current-version clojure.bootstrap/vc
    :target-path "../dunaj/target/page"
@@ -221,7 +285,7 @@
   []
 
   (gen-doc dunaj-config)
-
+ 
   (gen-doc dunaj-config true)
   (gen-doc dunaj-config false)
   (gen-doc dunaj-config false 'dunaj.core)
@@ -232,6 +296,8 @@
   (dunaj.doc/gen-api-list dunaj-config false)
 
   (dunaj.doc/gen-static dunaj-config)
+
+  (dunaj.doc/gen-static dunaj-lite-config)
 
   (dunaj.doc/gen-static 
    dunaj-config

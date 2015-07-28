@@ -2,6 +2,10 @@
 
 Generating Dunaj documentation.
 
+== Usage
+
+Run `./boot compile-docs`
+
 == License
 
 Copyright © 2013, 2015, Jozef Wagner.
